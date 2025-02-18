@@ -1,44 +1,32 @@
-let notas = [6.8, 8, 6.19];
-let media = 0;
-
-for (let i = 0; i < notas.length; i++) {
-  media += notas[i];
-}
-
-media = media / 3;
-
-if (media >= 7) {
-  console.log('APROVADO');
-} else {
-  console.log('REPROVADO');
-}
-
-console.log(`Média final: ${media.toFixed(3)}`, '\n');
-
-/* ---------------------------------------------------------------- */
-
-
-
-
-// testando com prompt
-// dar npm install readline-sync
+// dar npm install readline-sync antes de rodar
 
 const prompt = require('readline-sync');
-let media2 = 0, i = 0;
+
+function calcularMedia(notas) {
+  let somaNotas = 0;
+
+  for (let i = 0; i < notas.length; i++) {
+    somaNotas += notas[i];
+  }
+
+  return (somaNotas / notas.length).toFixed(3);
+}
+
+let notas = [], i = 0;
 let quantNotas = prompt.questionInt('Quantas notas voce deseja inserir? ');
 
 while (i < quantNotas) {
   i++;
 
-  media2 += prompt.questionFloat(`Digite a nota ${i}: `);
+  notas.push(prompt.questionFloat(`Digite a nota ${i}: `));
 }
 
-media2 = media2 / i;
-
-if (media2 >= 7) {
-  console.log('APROVADO');
+if (calcularMedia(notas) >= 7) {
+  console.log('\nSituação: APROVADO');
 } else {
-  console.log('REPROVADO');
+  console.log('\nSituação: REPROVADO');
 }
 
-console.log('Média final: ', media2);
+console.log('----------------------------');
+console.log('Média final: ', calcularMedia(notas));
+console.log('----------------------------');
